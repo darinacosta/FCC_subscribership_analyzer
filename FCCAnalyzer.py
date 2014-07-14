@@ -6,7 +6,7 @@ orleans_data = "../../google_drive/gis_database/united_states/by_state/louisiana
 
 class Analyzer:
 
-  def generateTotal(self): 
+  def generateTotal(self, featureIndex): 
     featureIndex = self.featureCount - 1
     total = 0
     while featureIndex > -1:
@@ -15,7 +15,19 @@ class Analyzer:
       featureIndex = featureIndex - 1
     return total
 
-  def returnFCCInteger(self, FCCAverage):
+  def generateMean(self):
+    return self.total/self.featureCount
+
+  def generatePercent(self, mean):  
+    mean = float(mean)
+    numberArray = (str(mean)).split('.')  
+    fractional = float('.' + numberArray[1])
+    integral = int(self.returnFCCIntegral(numberArray[0]))
+    dividend = integral + (fractional * 200)
+    percentage = (dividend/1000) * 100
+    return percentage 
+
+  def returnFCCIntegral(self, FCCAverage):
     return {
       '0': 0,
       '1': 0,
@@ -24,18 +36,6 @@ class Analyzer:
       '4': 600,
       '5': 800 }[FCCAverage]
 
-  def generateMean(self):
-    return self.total/self.featureCount
-
-  def generatePercent(self, mean):  
-    mean = float(mean)
-    numberArray = (str(mean)).split('.')  
-    numberArray[1] = float('.' + numberArray[1])
-    numberArray[0] = self.returnFCCInteger(numberArray[0])
-    numberArray[0] = int(numberArray[0])
-    dividend = numberArray[0] + (numberArray[1] * 200)
-    percentage = (dividend/1000) * 100
-    return percentage 
 
 class DatasetAnalyzer(Analyzer):
 
