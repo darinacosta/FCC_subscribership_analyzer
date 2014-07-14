@@ -6,7 +6,7 @@ orleans_data = "../../google_drive/gis_database/united_states/by_state/louisiana
 
 class Analyzer:
 
-  def generateTotal(self, featureIndex): 
+  def generateTotal(self): 
     featureIndex = self.featureCount - 1
     total = 0
     while featureIndex > -1:
@@ -18,7 +18,7 @@ class Analyzer:
   def generateMean(self):
     return self.total/self.featureCount
 
-  def generatePercent(self, mean):  
+  def generatePercent(self):  
     mean = float(mean)
     numberArray = (str(mean)).split('.')  
     fractional = float('.' + numberArray[1])
