@@ -37,7 +37,7 @@ class Analyzer:
     percentage = (dividend/1000) * 100
     return percentage 
 
-class DatasetAnalyzer(DataAnalyzer):
+class DatasetAnalyzer(Analyzer):
 
   def __init__(self, dataset, field):
     dataset = osgeo.ogr.Open(dataset)
